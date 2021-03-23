@@ -32,8 +32,10 @@ namespace webApi
                 opt => opt.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
 
             services.AddControllers();
-           
-            services.AddScoped<IcommanderRepo, MockCommanderRepo>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddScoped<IcommanderRepo, MockCommanderRepo>();
+            services.AddScoped<IcommanderRepo, SqlCommanderRepo>();
         }
 
 

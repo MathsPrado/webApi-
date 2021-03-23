@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,21 +15,23 @@ namespace webApi.Controllers
     public class CommandController : ControllerBase
     {
         private readonly IcommanderRepo _repository;
+        private IMapper _mapper;
 
-        public CommandController(IcommanderRepo repository)
+        public CommandController(IcommanderRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         //private readonly MockCommanderRepo _repository = new MockCommanderRepo();
 
         [HttpGet]
-        public ActionResult <IEnumerable<Command>> getAllCommands()
+        public ActionResult <IEnumerable<CommandReaderDto>> getAllCommands()
         {
             try
             {
-                var commandItens = _repository.GetAppCommands();
-                return Ok(commandItens);
+                var commandItens = _repository.GetAllCommands();
+                return Ok(_mapper.Map<IEnumerable<CommandReaderDto>>(commandItens));
 
             } catch(Exception e)
             {
@@ -38,11 +41,19 @@ namespace webApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult <Command> GetCommandById(int id)
+        public ActionResult <CommandReaderDto> GetCommandById(int id)
         {
 
             var commandItens = _repository.GetCommandById(id);
-            return Ok(commandItens);
+            if(commandItens != null)
+            {
+                return Ok(_mapper.Map<CommandReaderDto>(commandItens));
+            }
+            else
+            {
+                return NotFound();
+            }
+
 
         }
         

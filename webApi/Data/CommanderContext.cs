@@ -10,7 +10,7 @@ namespace webApi.Data
 
         }
 
-        public DbSet<CommandReaderDto> Commands { get; set; }
+        public DbSet<Command> Commands { get; set; }
 
     }
 }

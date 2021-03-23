@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace webApi.Models
 {
-    public class CommandReaderDto
+    public class Command
     {
         [Key]
         public int Id { get; set; }

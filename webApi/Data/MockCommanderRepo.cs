@@ -2,26 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using webApi.Dtos;
 using webApi.Models;
 
 namespace webApi.Data
 {
     public class MockCommanderRepo : IcommanderRepo
     {
-        public IEnumerable<CommandReaderDto> GetAllCommands()
+        public void CreateCommand(CommanderContext cmd)
         {
-            var commands = new List<CommandReaderDto> {
-               new CommandReaderDto { Id = 0, HowTo = "Boil an egg", Line = "Boil Water", Plataform = "Kettle & Pan" },
-               new CommandReaderDto { Id = 1, HowTo = "Cut bread", Line = "Boil Knif", Plataform = "Knife & Chopping" },
-               new CommandReaderDto { Id = 2, HowTo = "make Coffe", Line = "Hot Water", Plataform = "Nescafe" }
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Command> GetAllCommands()
+        {
+            var commands = new List<Command> {
+               new Command { Id = 0, HowTo = "Boil an egg", Line = "Boil Water", Plataform = "Kettle & Pan" },
+               new Command { Id = 1, HowTo = "Cut bread", Line = "Boil Knif", Plataform = "Knife & Chopping" },
+               new Command { Id = 2, HowTo = "make Coffe", Line = "Hot Water", Plataform = "Nescafe" }
         };
 
             return commands;
     }
 
-        public CommandReaderDto GetCommandById(int Id)
+        public Command GetCommandById(int Id)
         {
-            return new CommandReaderDto { Id = 0, HowTo = "Boil an egg", Line = "Boil Water", Plataform = "Kettle & Pan" };
+            return new Command { Id = 0, HowTo = "Boil an egg", Line = "Boil Water", Plataform = "Kettle & Pan" };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }

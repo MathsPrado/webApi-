@@ -8,7 +8,10 @@ namespace webApi.Data
 {
     public interface IcommanderRepo
     {
-        IEnumerable<CommandReaderDto> GetAllCommands();
-        CommandReaderDto GetCommandById(int Id);
+        bool SaveChanges();
+
+        IEnumerable<Command> GetAllCommands();
+        Command GetCommandById(int Id);
+        void CreateCommand(Command cmd);
     }
 }

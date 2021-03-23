@@ -14,14 +14,28 @@ namespace webApi.Data
             _context = context;
         }
 
-        public IEnumerable<CommandReaderDto> GetAllCommands()
+        public void CreateCommand(Command cmd)
         {
-            return _context.Commands.ToList();
+            if(cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Add(cmd);
         }
 
-        public CommandReaderDto GetCommandById(int Id)
+        public IEnumerable<Command> GetAllCommands()
+        {
+            return (IEnumerable<Command>)_context.Commands.ToList();
+        }
+
+        public Command GetCommandById(int Id)
         {
             return _context.Commands.FirstOrDefault(p => p.Id == Id);
+        }
+
+        public bool SaveChanges()
+        {
+           return(_context.SaveChanges() >= 0);
         }
     }
 }

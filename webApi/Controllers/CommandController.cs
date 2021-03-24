@@ -27,12 +27,12 @@ namespace webApi.Controllers
         //private readonly MockCommanderRepo _repository = new MockCommanderRepo();
 
         [HttpGet]
-        public ActionResult <IEnumerable<CommandReaderDto>> getAllCommands()
+        public ActionResult <IEnumerable<CommandReadDto>> getAllCommands()
         {
             try
             {
                 var commandItens = _repository.GetAllCommands();
-                return Ok(_mapper.Map<IEnumerable<CommandReaderDto>>(commandItens));
+                return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItens));
 
             } catch(Exception e)
             {
@@ -42,13 +42,13 @@ namespace webApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult <CommandReaderDto> GetCommandById(int id)
+        public ActionResult <CommandReadDto> GetCommandById(int id)
         {
 
             var commandItens = _repository.GetCommandById(id);
             if(commandItens != null)
             {
-                return Ok(_mapper.Map<CommandReaderDto>(commandItens));
+                return Ok(_mapper.Map<CommandReadDto>(commandItens));
             }
             else
             {
@@ -57,9 +57,12 @@ namespace webApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult <CommandReadDto CreateCommand(CommandCreateDto commandCreateDto)
+        public ActionResult <CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
         {
+            var commandModel = _mapper.Map<Command>(commandCreateDto);
+            _repository.CreateCommand(commandModel);
 
+            return Ok(commandModel);
         }
         
     }

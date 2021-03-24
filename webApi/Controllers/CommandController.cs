@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using webApi.Data;
+using webApi.Dtos;
 using webApi.Models;
 
 namespace webApi.Controllers
@@ -53,7 +54,11 @@ namespace webApi.Controllers
             {
                 return NotFound();
             }
+        }
 
+        [HttpPost]
+        public ActionResult <CommandReadDto CreateCommand(CommandCreateDto commandCreateDto)
+        {
 
         }
         

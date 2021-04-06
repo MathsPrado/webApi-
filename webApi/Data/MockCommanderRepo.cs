@@ -14,6 +14,11 @@ namespace webApi.Data
             throw new NotImplementedException();
         }
 
+        public void CreateCommand(Command cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             var commands = new List<Command> {

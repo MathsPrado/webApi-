@@ -39,5 +39,10 @@ namespace webApi.Data
         {
             throw new NotImplementedException();
         }
+
+        public void updateCommand(Command cmd)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

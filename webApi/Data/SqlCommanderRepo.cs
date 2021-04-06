@@ -37,5 +37,10 @@ namespace webApi.Data
         {
            return(_context.SaveChanges() >= 0);
         }
+
+        public void updateCommand(Command cmd)
+        {
+           //Nothing
+        }
     }
 }

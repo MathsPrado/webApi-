@@ -2,7 +2,7 @@
 
 namespace webApi.Dtos
 {
-    public class CommandCreateDto
+    public class CommandUpdateDto
     {
         [Required]
         [MaxLength(250)]

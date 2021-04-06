@@ -13,5 +13,6 @@ namespace webApi.Data
         IEnumerable<Command> GetAllCommands();
         Command GetCommandById(int Id);
         void CreateCommand(Command cmd);
+        void updateCommand(Command cmd);
     }
 }

@@ -14,5 +14,6 @@ namespace webApi.Data
         Command GetCommandById(int Id);
         void CreateCommand(Command cmd);
         void updateCommand(Command cmd);
+        void DeleteCommand(Command cmd);
     }
 }

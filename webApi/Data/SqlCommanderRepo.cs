@@ -23,6 +23,15 @@ namespace webApi.Data
             _context.Commands.Add(cmd);
         }
 
+        public void DeleteCommand(Command cmd)
+        {
+            if(cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Add(cmd);
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             return (IEnumerable<Command>)_context.Commands.ToList();

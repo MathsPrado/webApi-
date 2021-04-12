@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using webApi.Data;
+using Newtonsoft.Json.Serialization;
 
 namespace webApi
 {
@@ -31,7 +32,10 @@ namespace webApi
             services.AddDbContext<CommanderContext>(
                 opt => opt.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddScoped<IcommanderRepo, MockCommanderRepo>();
